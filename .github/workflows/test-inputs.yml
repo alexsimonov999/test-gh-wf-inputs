@@ -1,0 +1,54 @@
+name: 'Test Inputs'
+on:
+  workflow_dispatch:
+    inputs:
+      param_bool:
+        type: boolean
+        description: Boolean input
+        default: false
+      param_str:
+        type: string
+        description: String input
+        default: 'false'
+      param_choice:
+        type: choice
+        description: Choice input
+        options:
+          - yes
+          - no
+          - do-not-know
+        default: no
+jobs:
+  compare-bool-and-str:
+    name: 'Compare Boolean and String'
+    runs-on: ubuntu-latest
+    env:
+      result_of_str_cmp: ${{ inputs.param_str == '' }}
+    steps:
+      - name: Print debug info
+        run: |
+          echo "param_bool=${{ inputs.param_bool }}"
+          echo "inputs.param_bool == true is ${{ inputs.param_bool == true }}"
+          echo "inputs.param_bool == false is ${{ inputs.param_bool == false }}"
+          echo "inputs.param_bool == 'true' is ${{ inputs.param_bool == 'true' }}"
+          echo "inputs.param_bool == 'false' is ${{ inputs.param_bool == 'false' }}"
+          echo
+          echo "param_str=${{ inputs.param_str }}"
+          echo "inputs.param_str == true is ${{ inputs.param_str == true }}"
+          echo "inputs.param_str == false is ${{ inputs.param_str == false }}"
+          echo "inputs.param_str == 'true' is ${{ inputs.param_str == 'true' }}"
+          echo "inputs.param_str == 'false' is ${{ inputs.param_str == 'false' }}"
+          echo
+          echo "result_of_str_cmp=${{ env.result_of_str_cmp }}"
+          echo "env.result_of_str_cmp == true is ${{ env.result_of_str_cmp == true }}"
+          echo "env.result_of_str_cmp == false is ${{ env.result_of_str_cmp == false }}"
+          echo "env.result_of_str_cmp == 'true' is ${{ env.result_of_str_cmp == 'true' }}"
+          echo "env.result_of_str_cmp == 'false' is ${{ env.result_of_str_cmp == 'false' }}"
+          echo
+          echo "param_choice=${{ inputs.param_choice }}"
+          echo "inputs.param_choice == 'yes' is ${{ inputs.param_choice == 'yes' }}"
+          echo "inputs.param_choice == 'no' is ${{ inputs.param_choice == 'no' }}"
+          echo "inputs.param_choice == 'true' is ${{ inputs.param_choice == 'true' }}"
+          echo "inputs.param_choice == 'false' is ${{ inputs.param_choice == 'false' }}"
+          echo "inputs.param_choice == true is ${{ inputs.param_choice == true }}"
+          echo "inputs.param_choice == false is ${{ inputs.param_choice == false }}"
