@@ -10,6 +10,10 @@ on:
         type: string
         description: String input
         default: 'false'
+      matr_str:
+        type: string
+        description: String input
+        default: '["A", "B", "C"]'
       param_choice:
         type: choice
         description: Choice input yes/no/do-not-know
@@ -38,6 +42,9 @@ jobs:
   compare-bool-and-str:
     name: 'Compare Boolean and String'
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch: ${{ fromJSON(inputs.matr_str) }}
     env:
       result_of_str_cmp: ${{ inputs.param_str == '' }}
       param_bool_in_env: ${{ inputs.param_bool }}
@@ -45,6 +52,8 @@ jobs:
     steps:
       - name: Print debug info
         run: |
+          echo "matrix.arch=${{ matrix.arch }}"
+          echo
           echo "param_bool=${{ inputs.param_bool }}"
           echo "inputs.param_bool == true is ${{ inputs.param_bool == true }}"
           echo "inputs.param_bool == false is ${{ inputs.param_bool == false }}"
