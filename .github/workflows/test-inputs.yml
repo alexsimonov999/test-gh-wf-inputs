@@ -17,7 +17,7 @@ on:
           - yes
           - no
           - do-not-know
-        default: no
+        default: 'no'
 jobs:
   compare-bool-and-str:
     name: 'Compare Boolean and String'
