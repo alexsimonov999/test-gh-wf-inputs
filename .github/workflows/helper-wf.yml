@@ -1,0 +1,18 @@
+name: 'Utility'
+on:
+  workflow_call:
+    inputs:
+      param_bool:
+        type: boolean
+        required: true
+jobs:
+  job1:
+    name: 'Job 1'
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "param_bool=${{ inputs.param_bool }}"
+          echo "inputs.param_bool == true is ${{ inputs.param_bool == true }}"
+          echo "inputs.param_bool == false is ${{ inputs.param_bool == false }}"
+          echo "inputs.param_bool == 'true' is ${{ inputs.param_bool == 'true' }}"
+          echo "inputs.param_bool == 'false' is ${{ inputs.param_bool == 'false' }}"

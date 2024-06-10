@@ -103,3 +103,15 @@ jobs:
           echo "inputs.param_choice_2b == 'opt1' is ${{ inputs.param_choice_2b == 'opt1' }}"
           echo "inputs.param_choice_2b == 'opt2' is ${{ inputs.param_choice_2b == 'opt2' }}"
           echo "inputs.param_choice_2b == 'opt3' is ${{ inputs.param_choice_2b == 'opt3' }}"
+
+  run-helper-wf-1:
+    name: Use helper job with param_bool
+    uses: ./.github/workflows/helper-wf.yml
+    with:
+      param_bool: ${{ inputs.param_bool }}
+
+  run-helper-wf-2:
+    name: Use helper job with evaluated argument
+    uses: ./.github/workflows/helper-wf.yml
+    with:
+      param_bool: ${{ inputs.param_bool == true }}
