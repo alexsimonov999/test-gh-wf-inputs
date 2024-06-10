@@ -12,18 +12,36 @@ on:
         default: 'false'
       param_choice:
         type: choice
-        description: Choice input
+        description: Choice input yes/no/do-not-know
         options:
           - yes
           - no
           - do-not-know
         default: 'no'
+      param_choice_2a:
+        type: choice
+        description: Choice input opt1/opt2/opt3 and default without quotes
+        options:
+          - opt1
+          - opt2
+          - opt3
+        default: opt3
+      param_choice_2b:
+        type: choice
+        description: Choice input opt1/opt2/opt3
+        options:
+          - opt1
+          - opt2
+          - opt3
+        default: 'opt3'
 jobs:
   compare-bool-and-str:
     name: 'Compare Boolean and String'
     runs-on: ubuntu-latest
     env:
       result_of_str_cmp: ${{ inputs.param_str == '' }}
+      param_bool_in_env: ${{ inputs.param_bool }}
+      param_choice_in_env: ${{ inputs.param_choice }}
     steps:
       - name: Print debug info
         run: |
@@ -52,3 +70,27 @@ jobs:
           echo "inputs.param_choice == 'false' is ${{ inputs.param_choice == 'false' }}"
           echo "inputs.param_choice == true is ${{ inputs.param_choice == true }}"
           echo "inputs.param_choice == false is ${{ inputs.param_choice == false }}"
+          echo
+          echo "param_bool_in_env=${{ env.param_bool_in_env }}"
+          echo "env.param_bool_in_env == true is ${{ env.param_bool_in_env == true }}"
+          echo "env.param_bool_in_env == false is ${{ env.param_bool_in_env == false }}"
+          echo "env.param_bool_in_env == 'true' is ${{ env.param_bool_in_env == 'true' }}"
+          echo "env.param_bool_in_env == 'false' is ${{ env.param_bool_in_env == 'false' }}"
+          echo
+          echo "param_choice_in_env=${{ env.param_choice_in_env }}"
+          echo "env.param_choice_in_env == 'yes' is ${{ env.param_choice_in_env == 'yes' }}"
+          echo "env.param_choice_in_env == 'no' is ${{ env.param_choice_in_env == 'no' }}"
+          echo "env.param_choice_in_env == 'true' is ${{ env.param_choice_in_env == 'true' }}"
+          echo "env.param_choice_in_env == 'false' is ${{ env.param_choice_in_env == 'false' }}"
+          echo "env.param_choice_in_env == true is ${{ env.param_choice_in_env == true }}"
+          echo "env.param_choice_in_env == false is ${{ env.param_choice_in_env == false }}"
+          echo
+          echo "param_choice_2a=${{ inputs.param_choice_2a }}"
+          echo "inputs.param_choice_2a == 'opt1' is ${{ inputs.param_choice_2a == 'opt1' }}"
+          echo "inputs.param_choice_2a == 'opt2' is ${{ inputs.param_choice_2a == 'opt2' }}"
+          echo "inputs.param_choice_2a == 'opt3' is ${{ inputs.param_choice_2a == 'opt3' }}"
+          echo
+          echo "param_choice_2b=${{ inputs.param_choice_2b }}"
+          echo "inputs.param_choice_2b == 'opt1' is ${{ inputs.param_choice_2b == 'opt1' }}"
+          echo "inputs.param_choice_2b == 'opt2' is ${{ inputs.param_choice_2b == 'opt2' }}"
+          echo "inputs.param_choice_2b == 'opt3' is ${{ inputs.param_choice_2b == 'opt3' }}"
