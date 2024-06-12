@@ -118,6 +118,6 @@ jobs:
 
   run-helper-wf-3:
     name: Use helper job with evaluated argument
-    uses: ./workflows/helper-wf-2.yml
+    uses: ./.github/../workflows/helper-wf-2.yml
     with:
       param_bool: ${{ inputs.param_bool == true }}
