@@ -24,10 +24,15 @@ jobs:
           echo "inputs.param_bool == 'false' is ${{ inputs.param_bool == 'false' }}"
           echo "inputs.macos-files=${{ inputs.macos-files }}"
           echo "inputs.windows-files=${{ inputs.windows-files }}"
+          if [! d test_output ]; then
+            mkdir -p test_output
+          fi
+          cp -r ${{ inputs.macos-files }} test_output
+          ls test_output
           SRC_FILES=()
-          SRC_FILES+=(Release Debug output)
+          SRC_FILES+=("Release" "Debug" "output")
           SRC_FILES+=(${{ inputs.macos-files }})
-          SRC_FILES+=(Release Debug include)
+          SRC_FILES+=("Release" "Debug" "include")
           echo "SRC_FILES=${SRC_FILES}"
           SRC_FILES=()
           SRC_FILES+=(Release Debug output)
