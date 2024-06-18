@@ -14,7 +14,7 @@ on:
 jobs:
   job1:
     name: 'Job 1'
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - run: |
           echo "param_bool=${{ inputs.param_bool }}"
