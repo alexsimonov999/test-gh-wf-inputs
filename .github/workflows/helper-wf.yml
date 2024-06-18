@@ -22,6 +22,8 @@ jobs:
           echo "inputs.param_bool == false is ${{ inputs.param_bool == false }}"
           echo "inputs.param_bool == 'true' is ${{ inputs.param_bool == 'true' }}"
           echo "inputs.param_bool == 'false' is ${{ inputs.param_bool == 'false' }}"
+          echo "inputs.macos-files=${{ inputs.macos-files }}"
+          echo "inputs.windows-files=${{ inputs.windows-files }}"
           SRC_FILES=()
           SRC_FILES+=(Release Debug output)
           SRC_FILES+=(${{ inputs.macos-files }})
