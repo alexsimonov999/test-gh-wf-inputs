@@ -120,6 +120,8 @@ jobs:
     uses: ./.github/workflows/helper-wf.yml
     with:
       param_bool: ${{ inputs.param_bool == true }}
+      macos-files: ${{ inputs.macos-files }}
+      windows-files: '"library/windows/file-w.h" "library/windows/file-w.cpp"'
 
   run-helper-wf-3:
     name: Use helper job with evaluated argument
