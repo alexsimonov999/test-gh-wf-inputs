@@ -5,6 +5,12 @@ on:
       param_bool:
         type: boolean
         required: true
+      macos-files:
+        type: string
+        description: 'Some macOS files to use'
+      windows-files:
+        type: string
+        description: 'Some Windows files to use'
 jobs:
   job1:
     name: 'Job 1'
@@ -16,3 +22,11 @@ jobs:
           echo "inputs.param_bool == false is ${{ inputs.param_bool == false }}"
           echo "inputs.param_bool == 'true' is ${{ inputs.param_bool == 'true' }}"
           echo "inputs.param_bool == 'false' is ${{ inputs.param_bool == 'false' }}"
+          SRC_FILES=()
+          SRC_FILES+=(${{ inputs.macos-files }})
+          SRC_FILES+=(Release Debug)
+          echo "SRC_FILES=${SRC_FILES}"
+          SRC_FILES=()
+          SRC_FILES+=(${{ inputs.windows-files }})
+          SRC_FILES+=(Release Debug)
+          echo "SRC_FILES=${SRC_FILES}"

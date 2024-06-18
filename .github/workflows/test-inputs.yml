@@ -38,6 +38,9 @@ on:
           - opt2
           - opt3
         default: 'opt3'
+      macos-files:
+        type: string
+        description: 'Some macOS files to use'
 jobs:
   compare-bool-and-str:
     name: 'Compare Boolean and String'
@@ -109,6 +112,8 @@ jobs:
     uses: ./.github/workflows/helper-wf.yml
     with:
       param_bool: ${{ inputs.param_bool }}
+      macos-files: ${{ inputs.macos-files }}
+      windows-files: 'library/windows/file-w.h library/windows/file-w.cpp'
 
   run-helper-wf-2:
     name: Use helper job with evaluated argument
