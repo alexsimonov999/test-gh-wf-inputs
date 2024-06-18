@@ -23,10 +23,12 @@ jobs:
           echo "inputs.param_bool == 'true' is ${{ inputs.param_bool == 'true' }}"
           echo "inputs.param_bool == 'false' is ${{ inputs.param_bool == 'false' }}"
           SRC_FILES=()
+          SRC_FILES+=(Release Debug output)
           SRC_FILES+=(${{ inputs.macos-files }})
-          SRC_FILES+=(Release Debug)
+          SRC_FILES+=(Release Debug include)
           echo "SRC_FILES=${SRC_FILES}"
           SRC_FILES=()
+          SRC_FILES+=(Release Debug output)
           SRC_FILES+=(${{ inputs.windows-files }})
-          SRC_FILES+=(Release Debug)
+          SRC_FILES+=(Release Debug include)
           echo "SRC_FILES=${SRC_FILES}"
