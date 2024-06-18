@@ -32,3 +32,4 @@ jobs:
           SRC_FILES+=(${{ inputs.windows-files }})
           SRC_FILES+=(Release Debug include)
           echo "SRC_FILES=${SRC_FILES}"
+        shell: bash
